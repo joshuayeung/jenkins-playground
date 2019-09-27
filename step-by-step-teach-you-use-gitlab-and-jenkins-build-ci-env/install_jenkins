@@ -1,0 +1,12 @@
+# 因为 jenkins 用 java 写的，所以确保机器上装有 jdk 或 openjdk 环境，准备一个 jenkins 用的目录，下载 war 包
+
+mkdir jenkins
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+
+# 运行
+
+nohup java -jar jenkins.war --httpPort=8080 &> jenkins.log &
+
+# 查看 jenkins 输出
+
+tail -f jenkins.log
