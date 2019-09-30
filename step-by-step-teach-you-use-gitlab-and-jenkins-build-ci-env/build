@@ -1,0 +1,19 @@
+#! /bin/bash
+
+  # 编译代码
+  docker run --rm \
+    -v $PWD:/go/src/bd-ci-test \
+    -w /go/src/bd-ci-test \
+    golang:alpine go build
+
+  IMAGE="imroc/bd-ci-test:latest"
+
+  # 编译镜像
+  docker build -t $IMAGE .
+
+  # 上传镜像 (请提前登录好,docker login 只需登录一次)
+  docker push $IMAGE
+
+  # 清理
+  docker rmi $IMAGE
+  rm bd-ci-test
